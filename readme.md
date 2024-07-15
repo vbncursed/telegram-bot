@@ -54,4 +54,4 @@ python main.py
 Этот проект лицензирован под лицензией MIT. Подробности см. в файле LICENSE.
 
 ## Авторы
-- [Eduard]](https://github.com/vbncursed)
+- [Eduard](https://github.com/vbncursed)
