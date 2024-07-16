@@ -43,6 +43,17 @@ ROOT_URL=${DOMAIN}/app
 python main.py
 ```
 
+### Запуск с использованием Docker
+1. Создайте Docker образ:
+```bash
+docker build -t my_bot_image .
+```
+
+2. Запустите контейнер:
+```bash
+docker run --env-file bot/.env my_bot_image
+```
+
 ## Структура проекта
 - `bot/` - основной код приложения
 - `venv/` - виртуальное окружение
