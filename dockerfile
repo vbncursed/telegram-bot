@@ -10,8 +10,5 @@ COPY . /app
 # Устанавливаем зависимости
 RUN pip install --no-cache-dir -r bot/requirements.txt
 
-# Копируем файл .env в контейнер
-COPY bot/.env /app/bot/.env
-
 # Запускаем бота
 CMD ["python", "bot/bot.py"]
