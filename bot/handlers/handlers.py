@@ -1,5 +1,5 @@
 from aiogram import Router
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, InputFile
 from aiogram.fsm.context import FSMContext
 from states.states import PurchaseStates
 
@@ -68,10 +68,12 @@ async def handle_about(callback_query: CallbackQuery, state: FSMContext) -> None
 
 async def handle_go_buy_vpn(callback_query: CallbackQuery, state: FSMContext) -> None:
     keyboard: Keyboard = Keyboard().get_keyboard("continue", "back")
+    video_path = "../video.mp4"
+    video = InputFile(video_path)
 
     await state.set_state(PurchaseStates.go_buy_vpn)
-    await callback_query.message.answer(
-        text=go_buy_vpn_message(), reply_markup=keyboard
+    await callback_query.message.answer_video(
+        video, caption=go_buy_vpn_message(), reply_markup=keyboard
     )
 
 
