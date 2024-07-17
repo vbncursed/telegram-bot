@@ -20,7 +20,9 @@ async def handle_back(callback_query: CallbackQuery, state: FSMContext) -> None:
     elif current_state == PurchaseStates.vpn_choose_period:
         keyboard: Keyboard = Keyboard().get_keyboard("continue", "back")
         await callback_query.message.answer(
-            text=go_buy_vpn_message(), reply_markup=keyboard
+            text=go_buy_vpn_message(),
+            reply_markup=keyboard,
+            disable_web_page_preview=True,
         )
         await state.set_state(PurchaseStates.go_buy_vpn)
 
