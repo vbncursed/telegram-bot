@@ -4,6 +4,8 @@ from os import getenv
 load_dotenv()
 CARD_NUMBER = getenv("CARD_NUMBER")
 CREATOR_ID = getenv("CREATOR_ID")
+CREATOR_TAG = getenv("CREATOR_TAG")
+EXCEPTION_IDS = getenv("EXCEPTION_IDS")
 
 
 def welcome_message(user_name) -> str:
@@ -25,24 +27,36 @@ def vpn_choose_period_message() -> str:
     return "Выбери период подписки VPN, который ты хочешь купить."
 
 
-def one_month_message() -> str:
-    return "150 рублей – стоимость подписки на один месяц."
+def one_month_message(telegram_id: int) -> str:
+    if str(telegram_id) in EXCEPTION_IDS:
+        return "450 рублей – стоимость подписки на один месяц."
+    else:
+        return "150 рублей – стоимость подписки на один месяц."
 
 
-def three_month_message() -> str:
-    return "425 рублей – стомость подписки на три месяца."
+def three_month_message(telegram_id: int) -> str:
+    if str(telegram_id) in EXCEPTION_IDS:
+        return "1275 рублей – стомость подписки на три месяца."
+    else:
+        return "425 рублей – стомость подписки на три месяца."
 
 
-def six_month_message() -> str:
-    return "800 рублей – стоимость подписки на шесть месяцев."
+def six_month_message(telegram_id: int) -> str:
+    if str(telegram_id) in EXCEPTION_IDS:
+        return "2400 рублей – стоимость подписки на шесть месяцев."
+    else:
+        return "800 рублей – стоимость подписки на шесть месяцев."
 
 
-def twelve_month_message() -> str:
-    return "1500 рублей – стоимость подписки на один год."
+def twelve_month_message(telegram_id: int) -> str:
+    if str(telegram_id) in EXCEPTION_IDS:
+        return "4500 рублей – стоимость подписки на один год."
+    else:
+        return "1500 рублей – стоимость подписки на один год."
 
 
 def payment_page_message() -> str:
-    return f'Для оплаты подписки переведите деньги по номеру карты: Т-банк: <code>{CARD_NUMBER}</code> , Эдуард К.\n\nВ данный момент онлайн оплата еще не настроена, она находится в разработке, вы можете написать главному администратору бота @vbncursed, прислать ему чек оплаты и он выдаст вам конфиг для подключения VPN. Также после того как нажмете кнопку "Оплатил" вас перенесет в чат с главным администратором'
+    return f'Для оплаты подписки переведите деньги по номеру карты: Т-банк: <code>{CARD_NUMBER}</code> , Эдуард К.\n\nВ данный момент онлайн оплата еще не настроена, она находится в разработке, вы можете написать главному администратору бота {CREATOR_TAG}, прислать ему чек оплаты и он выдаст вам конфиг для подключения VPN. Также после того как нажмете кнопку "Оплатил" вас перенесет в чат с главным администратором'
 
 
 def paid_message() -> str:
@@ -50,6 +64,4 @@ def paid_message() -> str:
 
 
 def author_contact() -> str:
-    return (
-        "Если у вас есть вопросы, пожалуйста, свяжитесь с нашим создателем: @vbncursed"
-    )
+    return "Если у вас есть вопросы, пожалуйста, свяжитесь с нашим создателем: {CREATOR_TAG}"

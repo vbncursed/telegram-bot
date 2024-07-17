@@ -38,7 +38,10 @@ async def handle_one_month(callback_query: CallbackQuery, state: FSMContext) -> 
     keyboard: Keyboard = Keyboard().get_keyboard("payment_page", "back")
 
     await state.set_state(PurchaseStates.one_month)
-    await callback_query.message.answer(text=one_month_message(), reply_markup=keyboard)
+    await callback_query.message.answer(
+        text=one_month_message(telegram_id=callback_query.message.chat.id),
+        reply_markup=keyboard,
+    )
 
 
 async def handle_three_month(callback_query: CallbackQuery, state: FSMContext) -> None:
@@ -46,7 +49,8 @@ async def handle_three_month(callback_query: CallbackQuery, state: FSMContext) -
 
     await state.set_state(PurchaseStates.three_month)
     await callback_query.message.answer(
-        text=three_month_message(), reply_markup=keyboard
+        text=three_month_message(telegram_id=callback_query.message.chat.id),
+        reply_markup=keyboard,
     )
 
 
@@ -54,7 +58,10 @@ async def handle_six_month(callback_query: CallbackQuery, state: FSMContext) -> 
     keyboard: Keyboard = Keyboard().get_keyboard("payment_page", "back")
 
     await state.set_state(PurchaseStates.six_month)
-    await callback_query.message.answer(text=six_month_message(), reply_markup=keyboard)
+    await callback_query.message.answer(
+        text=six_month_message(telegram_id=callback_query.message.chat.id),
+        reply_markup=keyboard,
+    )
 
 
 async def handle_twelve_month(callback_query: CallbackQuery, state: FSMContext) -> None:
@@ -62,7 +69,8 @@ async def handle_twelve_month(callback_query: CallbackQuery, state: FSMContext) 
 
     await state.set_state(PurchaseStates.twelve_month)
     await callback_query.message.answer(
-        text=twelve_month_message(), reply_markup=keyboard
+        text=twelve_month_message(telegram_id=callback_query.message.chat.id),
+        reply_markup=keyboard,
     )
 
 
